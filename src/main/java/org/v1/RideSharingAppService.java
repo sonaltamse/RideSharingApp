@@ -28,24 +28,30 @@ public class RideSharingAppService {
         Driver assignedDriver = null;
         double minDistance = Double.MAX_VALUE;
         for (Driver driver : drivers) {
-            double currentDriverdistance = calculateDistance(passenger.location, driver.location);
+            double currentDriverdistance = calculateDistance(passenger.getLocation(), driver.getLocation());
             if(currentDriverdistance < minDistance) {
                 minDistance = currentDriverdistance;
                 assignedDriver = driver;
             }
         }
 
-        double expectedFare = calcFare(assignedDriver.vehicle, distance);
-        System.out.println("Assigned Driver: " + assignedDriver.name + ", Expected Fare: " + expectedFare);
-        System.out.println("Driver " + assignedDriver.name + " is on the way to pick up " + passenger.name);
+        double expectedFare = calcFare(assignedDriver.getVehicle(), distance);
+        System.out.println("Assigned Driver: " + assignedDriver.getName() + ", Expected Fare: " + expectedFare);
+        System.out.println("Driver " + assignedDriver.getName() + " is on the way to pick up " + passenger.getName());
     }
 
     private double calcFare(Vehicle vehicle, double distance) {
-
-
+        if(vehicle.getType().equalsIgnoreCase("Bus")) {
+            return distance * 1.5;
+        } else if(vehicle.getType().equalsIgnoreCase("Car")) {
+            return distance * 2.0;
+        }
+        return distance * 2.5; // Default fare for other vehicle types
     }
 
     private double calculateDistance(Location start, Location end) {
-        double dx = start
+        double dx = start.getLatitude() - end.getLatitude();
+        double dy = start.getLongitude() - end.getLongitude();
+        return Math.sqrt(dx * dx + dy * dy);
     }
 }

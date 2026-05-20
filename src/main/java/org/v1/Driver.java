@@ -1,9 +1,9 @@
 package org.v1;
 
 public class Driver {
-    String name;
-    Vehicle vehicle;
-    Location  location;
+    private String name;
+    private Vehicle vehicle;
+    private Location location;
 
     public Driver(String name, Vehicle vehicle, Location location) {
         this.name = name;
@@ -19,5 +19,14 @@ public class Driver {
         this.location = location;
     }
 
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
 
+    public String getName() {
+        return name;
+    }
 }

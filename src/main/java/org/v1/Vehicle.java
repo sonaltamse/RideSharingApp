@@ -1,11 +1,19 @@
 package org.v1;
 
 public class Vehicle {
-    String licensePlate;
-    String type;
+    private String licensePlate;
+    private String type;
 
     public Vehicle(String licensePlate, String type) {
         this.licensePlate = licensePlate;
         this.type = type;
+    }
+
+    public String getLicensePlate() {
+        return licensePlate;
+    }
+
+    public String getType() {
+        return type;
     }
 }
